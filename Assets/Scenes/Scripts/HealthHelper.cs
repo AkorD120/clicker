@@ -18,6 +18,7 @@ public class HealthHelper : MonoBehaviour
     void Start()
     {
         _gameHelper = GameObject.FindObjectOfType<GameHelper>();
+        MaxHealth = MaxHealth * _gameHelper.Level;
         _gameHelper.BarHealthUI.maxValue = MaxHealth;
         _gameHelper.BarHealthUI.value = MaxHealth;
         _gameHelper.HPValueUI.text = Health + "/" + MaxHealth;

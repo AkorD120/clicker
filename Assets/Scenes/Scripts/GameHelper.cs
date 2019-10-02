@@ -23,7 +23,7 @@ public class GameHelper : MonoBehaviour
     public int PlayerGold = 0;
     public int PlayerRuby = 0;
     public int PlayerDamage = 10;
-    public int GameTime = 10;
+    public int GameTime = 15;
 
     int _curentTime;
     int _count;
@@ -40,22 +40,23 @@ public class GameHelper : MonoBehaviour
 
         SpawnMonsters();
 
-        // InvokeRepeating("Timer", 0, 1);
+        InvokeRepeating("Timer", 0, 1);
     }
 
     void Timer()
     {
         _curentTime++;
 
-        GameTimeText.text = (GameTime - _curentTime).ToString() + " s";
+        GameTimeText.text = $"{(GameTime - _curentTime).ToString()} s  X{Level}";
 
         if (_curentTime >= GameTime)
         ///End the Game
         {
-            Time.timeScale = 0; ///Pause
-            PauseGame = true;
-            EndMenuControl.gameObject.SetActive(true);
-            EndMenuControl.ShowScore(TotalGold, TotalRuby, _count, _countBoss, Level);
+            GameTime += 20;
+            //Time.timeScale = 0; ///Pause
+            //PauseGame = true;
+            //EndMenuControl.gameObject.SetActive(true);
+            //EndMenuControl.ShowScore(TotalGold, TotalRuby, _count, _countBoss, Level);
             Level++;
         }
     }
